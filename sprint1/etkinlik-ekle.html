@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Etkinlik Ekle</title>
+</head>
+<body>
+    <header>
+        <h1>Kampüs Etkinlikleri</h1>
+        <nav>
+            <a href="index.html">Ana Sayfa</a> |
+            <a href="etkinlikler.html">Etkinlikler</a> |
+            <a href="etkinlik-detay.html">Detay</a> |
+            <a href="etkinlik-ekle.html">Ekle</a> |
+            <a href="etkinlik-guncelle.html">Güncelle</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Etkinlik Ekle</h2>
+        <form action="#" method="POST">
+            <label for="etkinlik_adi">Etkinlik Adı</label><br>
+            <input type="text" id="etkinlik_adi" name="etkinlik_adi" required><br><br>
+
+            <label for="kategori">Kategori</label><br>
+            <select id="kategori" name="kategori" required>
+                <option value="">Seçiniz ▾</option>
+                <option value="seminer">Seminer</option>
+                <option value="atolye">Atölye</option>
+                <option value="konser">Konser</option>
+            </select><br><br>
+
+            <label for="tarih">Tarih</label><br>
+            <input type="date" id="tarih" name="tarih" required><br><br>
+
+            <label for="saat">Saat</label><br>
+            <input type="time" id="saat" name="saat" required><br><br>
+
+            <label for="yer">Yer</label><br>
+            <input type="text" id="yer" name="yer" required><br><br>
+
+            <label for="aciklama">Açıklama</label><br>
+            <textarea id="aciklama" name="aciklama" rows="4" cols="30" required></textarea><br><br>
+
+            <button type="submit">Gönder</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>Yusuf Emre Altan · 2416501065 · 2026</p>
+    </footer>
+</body>
+</html>
