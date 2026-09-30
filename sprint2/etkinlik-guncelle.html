@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Etkinlik Güncelle</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Etkinlik Güncelle · Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2416501065.css">
 </head>
 <body>
-    <header>
-        <h1>Kampüs Etkinlikleri</h1>
-        <nav>
-            <a href="index.html">Ana Sayfa</a> |
-            <a href="etkinlikler.html">Etkinlikler</a> |
-            <a href="etkinlik-detay.html">Detay</a> |
-            <a href="etkinlik-ekle.html">Ekle</a> |
-            <a href="etkinlik-guncelle.html">Güncelle</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Etkinlik Güncelle</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="etkinlikler.html">Etkinlikler</a></li>
+        <li><a href="etkinlik-ekle.html">Ekle</a></li>
+        <li><a href="etkinlik-guncelle.html" aria-current="page">Güncelle</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <h2>Etkinlik Güncelle</h2>
-        <form action="#" method="POST">
-            <label for="etkinlik_adi">Etkinlik Adı</label><br>
-            <input type="text" id="etkinlik_adi" name="etkinlik_adi" value="Kariyer Günleri 2026" required><br><br>
+  <main>
+    <form action="#" method="post">
+      <label for="ad">Etkinlik adı</label>
+      <input type="text" id="ad" name="ad" value="Kariyer Günleri 2026" required>
 
-            <label for="kategori">Kategori</label><br>
-            <select id="kategori" name="kategori" required>
-                <option value="seminer" selected>Seminer ▾</option>
-                <option value="atolye">Atölye</option>
-                <option value="konser">Konser</option>
-            </select><br><br>
+      <label for="kategori">Kategori</label>
+      <select id="kategori" name="kategori" required>
+        <option value="">Seçiniz</option>
+        <option selected>Seminer</option>
+        <option>Atölye</option>
+        <option>Söyleşi</option>
+      </select>
 
-            <label for="tarih">Tarih</label><br>
-            <input type="date" id="tarih" name="tarih" value="2026-10-12" required><br><br>
+      <label for="tarih">Tarih</label>
+      <input type="date" id="tarih" name="tarih" value="2026-10-12" required>
 
-            <label for="saat">Saat</label><br>
-            <input type="time" id="saat" name="saat" value="14:00" required><br><br>
+      <label for="aciklama">Açıklama</label>
+      <textarea id="aciklama" name="aciklama" rows="4">Mezun söyleşileri</textarea>
 
-            <label for="yer">Yer</label><br>
-            <input type="text" id="yer" name="yer" value="A Blok Konferans Salonu" required><br><br>
+      <button type="submit">Güncelle</button>
+    </form>
+  </main>
 
-            <label for="aciklama">Açıklama</label><br>
-            <textarea id="aciklama" name="aciklama" rows="4" cols="30" required>Öğrencilerimizi sektörün önde gelen firmalarıyla buluşturduğumuz kariyer günleri...</textarea><br><br>
-
-            <button type="submit">Güncelle</button>
-        </form>
-    </main>
-
-    <footer>
-        <p>Yusuf Emre Altan · 2416501065 · 2026</p>
-    </footer>
+  <footer>
+    <p>Yusuf Emre Altan · 2026</p>
+  </footer>
 </body>
 </html>
