@@ -1,74 +1,51 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <title>Etkinlikler</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tüm Etkinlikler · Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2416501065.css">
 </head>
 <body>
-    <header>
-        <h1>Kampüs Etkinlikleri</h1>
-        <nav>
-            <a href="index.html">Ana Sayfa</a> |
-            <a href="etkinlikler.html">Etkinlikler</a> |
-            <a href="etkinlik-detay.html">Detay</a> |
-            <a href="etkinlik-ekle.html">Ekle</a> |
-            <a href="etkinlik-guncelle.html">Güncelle</a>
-        </nav>
-    </header>
+  <header>
+    <h1>Tüm Etkinlikler</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="etkinlikler.html" aria-current="page">Etkinlikler</a></li>
+        <li><a href="etkinlik-ekle.html">Ekle</a></li>
+        <li><a href="etkinlik-guncelle.html">Güncelle</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <table border="1">
-            <caption>Etkinlikler</caption>
-            <tr>
-                <td>
-                    <article>
-                        <h2>Kariyer Günleri 2026</h2>
-                        <p>Kategori: Seminer</p>
-                        <p>Tarih: <time datetime="2026-10-12">12 Ekim 2026</time></p>
-                        <p>Yer: A Blok</p>
-                        <p>Kısa Açıklama: Sektör liderleriyle buluşma fırsatı.</p>
-                        <a href="etkinlik-detay.html">Detayları gör</a>
-                    </article>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <article>
-                        <h2>Robotik Atölyesi</h2>
-                        <p>Kategori: Atölye</p>
-                        <p>Tarih: <time datetime="2026-10-20">20 Ekim 2026</time></p>
-                        <p>Yer: Lab 2</p>
-                        <p>Kısa Açıklama: Temel robotik ve kodlama atölyesi.</p>
-                        <a href="etkinlik-detay.html">Detayları gör</a>
-                    </article>
-                </td>
-            </tr>
-        </table>
+  <main>
+    <section class="kartlar uc-sutun">
+      <article class="kart">
+        <h3>Kariyer Günleri</h3>
+        <p>Seminer · <time datetime="2026-10-12">12 Ekim</time></p>
+        <p>A Blok</p>
+        <a href="etkinlik-detay.html">Detay →</a>
+      </article>
 
-        <br>
+      <article class="kart">
+        <h3>Robotik Atölyesi</h3>
+        <p>Atölye · <time datetime="2026-10-20">20 Ekim</time></p>
+        <p>Lab 2</p>
+        <a href="etkinlik-detay.html">Detay →</a>
+      </article>
 
-        <table border="1">
-            <caption>Ayın Programı</caption>
-            <tr>
-                <th>Tarih</th>
-                <th>Etkinlik</th>
-                <th>Yer</th>
-            </tr>
-            <tr>
-                <td>12 Ekim</td>
-                <td>Kariyer Günleri</td>
-                <td>A Blok</td>
-            </tr>
-            <tr>
-                <td>20 Ekim</td>
-                <td>Robotik Atölyesi</td>
-                <td>Lab 2</td>
-            </tr>
-        </table>
-    </main>
+      <article class="kart">
+        <h3>Siber Güvenlik</h3>
+        <p>Söyleşi · <time datetime="2026-10-27">27 Ekim</time></p>
+        <p>B Blok</p>
+        <a href="etkinlik-detay.html">Detay →</a>
+      </article>
+    </section>
+  </main>
 
-    <footer>
-        <p>Yusuf Emre Altan · 2416501065 · 2026</p>
-    </footer>
+  <footer>
+    <p>Yusuf Emre Altan · 2026</p>
+  </footer>
 </body>
 </html>
