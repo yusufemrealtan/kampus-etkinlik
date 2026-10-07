@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Etkinlik Ekle · Kampüs Etkinlikleri</title>
+  <link rel="stylesheet" href="css/2416501065.css">
+</head>
+<body>
+  <header>
+    <h1>Etkinlik Ekle</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Ana Sayfa</a></li>
+        <li><a href="etkinlikler.html">Etkinlikler</a></li>
+        <li><a href="etkinlik-ekle.html" aria-current="page">Ekle</a></li>
+        <li><a href="etkinlik-guncelle.html">Güncelle</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <form action="#" method="post">
+      <label for="ad">Etkinlik adı</label>
+      <input type="text" id="ad" name="ad" required>
+
+      <label for="kategori">Kategori</label>
+      <select id="kategori" name="kategori" required>
+        <option value="">Seçiniz</option>
+        <option>Seminer</option>
+        <option>Atölye</option>
+        <option>Söyleşi</option>
+      </select>
+
+      <label for="tarih">Tarih</label>
+      <input type="date" id="tarih" name="tarih" required>
+
+      <label for="aciklama">Açıklama</label>
+      <textarea id="aciklama" name="aciklama" rows="4"></textarea>
+
+      <button type="submit">Kaydet</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>Yusuf Emre Altan · 2026</p>
+  </footer>
+</body>
+</html>

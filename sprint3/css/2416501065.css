@@ -1,0 +1,238 @@
+/* Yusuf Emre Altan — 2416501065 */
+:root {
+  --no: 2416501065;
+  --ton: mod(var(--no), 360);
+  --renk-ana: hsl(var(--ton) 65% 38%);
+  --renk-zemin: hsl(var(--ton) 30% 97%);
+  --font: "Times New Roman", serif;
+  --bosluk-m: 1rem;  --kose: 8px;
+
+  /* Ek değişkenler: hepsi senin tonundan türüyor */
+  --renk-ana-koyu: hsl(var(--ton) 65% 28%);   /* menü üzerine gelince */
+  --renk-metin: hsl(var(--ton) 25% 15%);      /* normal yazı rengi */
+  --renk-soluk: hsl(var(--ton) 10% 40%);      /* ikincil yazılar */
+  --renk-cizgi: hsl(var(--ton) 20% 85%);      /* kart ve input kenarları */
+  --renk-kart: hsl(0 0% 100%);                /* beyaz kart zemini */
+  --renk-hata: hsl(0 90% 45%);                /* hatalı alan: kırmızı */
+  --renk-hata-zemin: hsl(0 100% 95%);         /* hatalı alanın içi */
+  --bosluk-s: 0.5rem;                         /* küçük boşluk */
+  --bosluk-l: 2rem;                           /* büyük boşluk */
+  --genislik: 1100px;                         /* sayfanın max genişliği */
+}
+body { font-family: var(--font); }
+
+/* =========================================================
+   1) TEMEL AYARLAR
+   ========================================================= */
+
+/* Kenarlık ve padding genişliğe dahil olsun → taşma olmaz */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1.0625rem;           /* telefonda rahat okunur */
+  color: var(--renk-metin);
+  background: var(--renk-zemin);
+}
+
+/* Resimler hiçbir zaman ekrandan büyük olmasın */
+img { display: block; max-width: 100%; height: auto; }
+
+h2 { color: var(--renk-ana); }
+
+/* =========================================================
+   2) ÜST BAŞLIK VE MENÜ (beş sayfada aynı)
+   ========================================================= */
+header {
+  background: var(--renk-ana);
+  color: var(--renk-kart);
+  padding: var(--bosluk-m);
+  text-align: center;
+}
+header h1 { margin: 0 0 var(--bosluk-s); font-size: 1.6rem; }
+
+nav ul {
+  list-style: none;               /* madde işaretlerini kaldır */
+  margin: 0;
+  padding: 0;
+  display: flex;                  /* linkler yan yana */
+  flex-wrap: wrap;                /* sığmazsa alt satıra geç */
+  justify-content: center;
+  gap: var(--bosluk-s);
+}
+nav a {
+  display: inline-block;
+  min-height: 44px;               /* parmakla basılacak boyut */
+  padding: var(--bosluk-s) var(--bosluk-m);
+  color: var(--renk-kart);
+  text-decoration: none;
+  border-radius: var(--kose);
+}
+nav a:hover,
+nav a:focus-visible,
+nav a[aria-current="page"] {      /* bulunduğun sayfa vurgulu */
+  background: var(--renk-ana-koyu);
+}
+
+/* =========================================================
+   3) SAYFA GÖVDESİ
+   ========================================================= */
+main {
+  max-width: var(--genislik);
+  margin: 0 auto;                 /* geniş ekranda ortala */
+  padding: var(--bosluk-m);
+}
+
+.giris { font-size: 1.15rem; color: var(--renk-soluk); }
+
+/* =========================================================
+   4) KARTLAR (Sprint 1'deki tablonun yerine)
+   ========================================================= */
+.kartlar {
+  display: grid;
+  grid-template-columns: 1fr;     /* TELEFON: tek sütun */
+  gap: var(--bosluk-m);
+}
+/* Bölüm başlığı tüm satırı kaplasın, kart gibi davranmasın */
+.kartlar > h2 { grid-column: 1 / -1; margin: 0; }
+
+.kart {
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+  padding: var(--bosluk-m);
+}
+.kart h3 { margin: 0 0 var(--bosluk-s); }
+.kart p  { margin: 0; color: var(--renk-soluk); }
+.kart a {
+  display: inline-block;
+  margin-top: var(--bosluk-s);
+  padding: var(--bosluk-s) 0;
+  color: var(--renk-ana);
+  font-weight: bold;
+  text-decoration: none;
+}
+.kart a:hover { text-decoration: underline; }
+
+/* "Tüm etkinlikleri gör" linki */
+.tumu {
+  display: inline-block;
+  margin-top: var(--bosluk-m);
+  padding: var(--bosluk-s) 0;
+  color: var(--renk-ana);
+  font-weight: bold;
+}
+
+/* =========================================================
+   5) ETKİNLİK DETAY
+   ========================================================= */
+.detay { display: grid; gap: var(--bosluk-l); }  /* telefonda alt alta */
+
+figure { margin: 0; }
+.detay img { width: 100%; border-radius: var(--kose); }
+figcaption {
+  margin-top: var(--bosluk-s);
+  color: var(--renk-soluk);
+  font-size: 0.9rem;
+}
+
+dl { margin: 0; }
+dt { font-weight: bold; color: var(--renk-ana); }
+dd { margin: 0 0 var(--bosluk-s); }
+
+.geri {
+  display: inline-block;
+  padding: var(--bosluk-s) 0;
+  color: var(--renk-ana);
+  font-weight: bold;
+}
+
+/* =========================================================
+   6) FORMLAR (Ekle ve Güncelle)
+   ========================================================= */
+form {
+  display: grid;                  /* label ve input alt alta */
+  gap: var(--bosluk-s);
+  max-width: 600px;
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+  padding: var(--bosluk-m);
+}
+label { font-weight: bold; margin-top: var(--bosluk-s); }
+
+input, select, textarea {
+  font: inherit;                  /* formlar da senin fontunu kullansın */
+  color: inherit;
+  width: 100%;
+  min-width: 0;                   /* tarih alanı telefonda taşmasın */
+  min-height: 44px;
+  padding: var(--bosluk-s);
+  background: var(--renk-kart);
+  border: 1px solid var(--renk-cizgi);
+  border-radius: var(--kose);
+}
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--renk-ana);
+  outline-offset: 1px;
+}
+
+/* Boş gönderilen zorunlu alan kırmızı olur */
+input:user-invalid,
+select:user-invalid,
+textarea:user-invalid {
+  border: 2px solid var(--renk-hata);
+  background: var(--renk-hata-zemin);
+  outline-color: var(--renk-hata);
+}
+
+button {
+  font: inherit;
+  font-weight: bold;
+  width: 100%;                    /* telefonda tam genişlik */
+  min-height: 48px;
+  margin-top: var(--bosluk-m);
+  padding: var(--bosluk-s) var(--bosluk-l);
+  color: var(--renk-kart);
+  background: var(--renk-ana);
+  border: none;
+  border-radius: var(--kose);
+  cursor: pointer;
+}
+button:hover { background: var(--renk-ana-koyu); }
+
+/* =========================================================
+   7) ALT BİLGİ
+   ========================================================= */
+footer {
+  text-align: center;
+  padding: var(--bosluk-l) var(--bosluk-m);
+  color: var(--renk-soluk);
+}
+
+/* =========================================================
+   8) GENİŞ EKRANLAR (telefon önce yazıldı, burası sonra)
+   ========================================================= */
+
+/* Tablet ve üstü */
+@media (min-width: 600px) {
+  .kartlar { grid-template-columns: repeat(2, 1fr); } /* index: 2 yan yana */
+  button { width: auto; justify-self: start; }
+}
+
+/* Detay sayfası: afiş sol, künye sağ */
+@media (min-width: 768px) {
+  .detay { grid-template-columns: 1fr 1fr; align-items: start; }
+  dl {
+    display: grid;
+    grid-template-columns: auto 1fr;  /* "Tarih  12 Ekim" yan yana */
+    gap: var(--bosluk-s) var(--bosluk-m);
+  }
+  dd { margin: 0; }
+}
+
+/* Masaüstü: etkinlikler sayfası 3 sütun */
+@media (min-width: 900px) {
+  .kartlar.uc-sutun { grid-template-columns: repeat(3, 1fr); }
+}
