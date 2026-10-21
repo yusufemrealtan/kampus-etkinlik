@@ -9,7 +9,8 @@ import {
   searchEvents,
 } from "./utils/filter-events";
 import { formatDate } from "./utils/format-date";
-import Footer from "./components/layout/Footer"; // ← ADIM 2
+import Footer from "./components/layout/Footer";
+import Header from "./components/layout/Header"; // ← ADIM 3
 
 // Menü öğeleri bir dizide (Güncelle menüde yok)
 const menuItems: { page: PageName; label: string }[] = [
@@ -55,6 +56,11 @@ function App() {
   if (page === "add") title = "Etkinlik Ekle";
   if (page === "update") title = "Etkinlik Güncelle";
 
+  // Sayfaya göre alt yazı (sadece ana sayfa ve etkinliklerde) ← ADIM 3
+  let text: string | undefined;
+  if (page === "home") text = "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.";
+  if (page === "events") text = "Ekim ayında kampüste düzenlenen etkinlikler.";
+
   // Başlık değişince sekme adı da değişsin
   useEffect(() => {
     document.title =
@@ -88,35 +94,26 @@ function App() {
 
   return (
     <>
-      <header className="site-baslik">
-        <h1>{title}</h1>
-        {page === "home" && (
-          <p className="alt-baslik">
-            Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.
-          </p>
-        )}
-        {page === "events" && (
-          <p className="alt-baslik">Ekim ayında kampüste düzenlenen etkinlikler.</p>
-        )}
-        <nav className="menu">
-          <ul>
-            {menuItems.map((item) => (
-              <li key={item.page}>
-                <a
-                  href="#"
-                  aria-current={page === item.page ? "page" : undefined}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    go(item.page);
-                  }}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </header>
+      <Header title={title} text={text} /> {/* ← ADIM 3 */}
+
+      <nav className="menu">
+        <ul>
+          {menuItems.map((item) => (
+            <li key={item.page}>
+              <a
+                href="#"
+                aria-current={page === item.page ? "page" : undefined}
+                onClick={(e) => {
+                  e.preventDefault();
+                  go(item.page);
+                }}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <main>
         {/* Ana sayfa */}
@@ -302,7 +299,7 @@ function App() {
         )}
       </main>
 
-      <Footer /> {/* ← ADIM 2 */}
+      <Footer />
     </>
   );
 }

@@ -98,7 +98,7 @@ main {
 /* ========== 4) KARTLAR ========== */
 .kartlar {
   display: grid;
-  grid-template-columns: 1fr;          /* telefon: tek sütun */
+  grid-template-columns: 1fr;
   gap: var(--bosluk-m);
   margin-bottom: var(--bosluk-m);
 }
@@ -115,7 +115,7 @@ main {
 .kart h2 { margin: 0; font-size: 1.2rem; color: var(--renk-metin); }
 .kart p { margin: 0; }
 .kart a {
-  margin-top: auto;                    /* link hep kartın altında */
+  margin-top: auto;
   padding-top: var(--bosluk-s);
   color: var(--renk-ana);
   font-weight: bold;
@@ -140,7 +140,7 @@ main {
 .detay {
   display: grid;
   gap: var(--bosluk-l);
-  grid-template-areas: "kunye" "afis" "aciklama";   /* telefon */
+  grid-template-areas: "kunye" "afis" "aciklama";
 }
 .detay-afis { grid-area: afis; margin: 0; }
 .afis {
@@ -156,7 +156,7 @@ main {
   color: var(--renk-kart);
   border-radius: var(--kose);
   outline: 2px solid var(--renk-vurgu);
-  outline-offset: -12px;               /* içte ince çerçeve */
+  outline-offset: -12px;
 }
 .afis-baslik { font-size: 1.6rem; }
 .afis-alt { color: var(--renk-vurgu); }
@@ -180,7 +180,6 @@ dd { margin: 0 0 var(--bosluk-s); }
 .aciklama { grid-area: aciklama; }
 .aciklama h2 { margin-top: 0; }
 
-/* Kırmızı hata kutusu (detay ve güncelle sayfası) */
 .hata-kutusu {
   max-width: 600px;
   margin-bottom: var(--bosluk-m);
@@ -221,13 +220,12 @@ input:focus, select:focus, textarea:focus {
   outline-offset: 1px;
 }
 
-/* JavaScript hatalı bulduğu alana aria-invalid="true" koyar */
 [aria-invalid="true"] {
   border: 2px solid var(--renk-hata);
   background: var(--renk-hata-zemin);
 }
 .hata { color: var(--renk-hata); font-size: 0.9rem; }
-.hata:empty { display: none; }         /* boşken yer kaplamasın */
+.hata:empty { display: none; }
 
 button {
   font: inherit;
@@ -244,7 +242,6 @@ button {
 }
 button:hover { background: var(--renk-ana-koyu); }
 
-/* Formun altındaki mesaj kutusu */
 .mesaj {
   max-width: 600px;
   margin-top: var(--bosluk-m);
@@ -267,7 +264,7 @@ button:hover { background: var(--renk-ana-koyu); }
   margin: 0;
   color: var(--renk-metin);
   font-size: 0.85rem;
-  white-space: pre-wrap;               /* telefonda yana taşmasın */
+  white-space: pre-wrap;
   overflow-wrap: anywhere;
 }
 
@@ -282,13 +279,13 @@ footer {
 /* ========== 9) GENİŞ EKRANLAR ========== */
 @media (min-width: 600px) {
   .kartlar { grid-template-columns: repeat(2, 1fr); }
-  .filtre { grid-template-columns: 2fr 1fr; gap: var(--bosluk-m); }  /* arama + kategori yan yana */
+  .filtre { grid-template-columns: 2fr 1fr; gap: var(--bosluk-m); }
   button { width: auto; justify-self: start; }
 }
 @media (min-width: 768px) {
   .detay {
     grid-template-columns: 3fr 2fr;
-    grid-template-areas: "afis kunye" "aciklama kunye";   /* afiş sol, künye sağ */
+    grid-template-areas: "afis kunye" "aciklama kunye";
     align-items: start;
   }
   dl {
@@ -300,7 +297,9 @@ footer {
 }
 @media (min-width: 900px) {
   .kartlar.uc-sutun { grid-template-columns: repeat(3, 1fr); }
-}/* ========== 10) SPRINT 4 EKLERİ ========== */
+}
+
+/* ========== 10) SPRINT 4 EKLERİ ========== */
 .detay-afis img { width: 100%; border-radius: var(--kose); }
 
 .detay { grid-template-areas: "afis" "kunye" "aciklama"; }
@@ -310,3 +309,14 @@ footer {
   .detay { grid-template-areas: "afis kunye" "aciklama kunye"; }
   .detay.afissiz { grid-template-areas: "aciklama kunye"; }
 }
+
+/* ========== 11) SPRINT 5 EKLERİ ========== */
+/* Menü artık header'ın dışında; aynı zemin üzerinde dursun */
+.site-baslik { padding-bottom: 0; }
+.menu {
+  background: var(--renk-ana);
+  padding: 0 var(--bosluk-m) var(--bosluk-m);
+}
+
+/* EventList'in boş liste mesajı (Adım 6'da kullanılacak) */
+.sonuc { font-weight: bold; color: var(--renk-ana); }
