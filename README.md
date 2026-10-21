@@ -28,3 +28,7 @@ Proje `frontend/` klasöründe. Çalıştırmak için: `cd frontend`, `npm insta
 | src/data/events.ts | Tipli 6 etkinlik verisi. |
 | src/utils/filter-events.ts | Arama, kategori filtresi ve id ile bulma fonksiyonları. |
 | public/ | Olduğu gibi kopyalanan dosyalar (afis.svg). |
+## Sprint 5 — React Bileşenleri
+App.tsx 9 bileşene bölündü: Header, Navigation, Footer (layout),
+EventCard, EventList, EventFilter, EventDetail (events), EventForm (forms).
+State App'te kalır; bileşenler veriyi props ile alır, olayları callback ile bildirir.
