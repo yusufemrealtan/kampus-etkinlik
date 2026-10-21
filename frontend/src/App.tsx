@@ -1,14 +1,15 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import type { CampusEvent, Category } from "./types/campus-event";
-import type { PageName } from "./types/page"; // ← ADIM 1
+import type { PageName } from "./types/page";
 import { events } from "./data/events";
 import {
   filterByCategory,
   findEventById,
   searchEvents,
 } from "./utils/filter-events";
-import { formatDate } from "./utils/format-date"; // ← ADIM 1
+import { formatDate } from "./utils/format-date";
+import Footer from "./components/layout/Footer"; // ← ADIM 2
 
 // Menü öğeleri bir dizide (Güncelle menüde yok)
 const menuItems: { page: PageName; label: string }[] = [
@@ -68,7 +69,7 @@ function App() {
         <p>
           <span className="etiket">{event.category}</span>
         </p>
-        <p>Tarih: {formatDate(event.date)}, {event.time}</p> {/* ← ADIM 1 */}
+        <p>Tarih: {formatDate(event.date)}, {event.time}</p>
         <p>Yer: {event.location}</p>
         <p>Kontenjan: {event.capacity} kişi</p>
         <p>{event.description}</p>
@@ -210,7 +211,7 @@ function App() {
               <h2>Etkinlik Künyesi</h2>
               <dl>
                 <dt>Tarih</dt>
-                <dd>{formatDate(selected.date)}, {selected.time}</dd> {/* ← ADIM 1 */}
+                <dd>{formatDate(selected.date)}, {selected.time}</dd>
                 <dt>Yer</dt>
                 <dd>{selected.location}</dd>
                 <dt>Kategori</dt>
@@ -301,9 +302,7 @@ function App() {
         )}
       </main>
 
-      <footer>
-        <p>Yusuf Emre Altan · 2416501065 · 2026</p>
-      </footer>
+      <Footer /> {/* ← ADIM 2 */}
     </>
   );
 }
