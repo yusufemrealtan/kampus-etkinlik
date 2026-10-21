@@ -8,12 +8,13 @@ import {
   findEventById,
   searchEvents,
 } from "./utils/filter-events";
-import { formatDate } from "./utils/format-date";
+// ← ADIM 8: formatDate import'u silindi
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
 import EventList from "./components/events/EventList";
-import EventFilter from "./components/events/EventFilter"; // ← ADIM 7
+import EventFilter from "./components/events/EventFilter";
+import EventDetail from "./components/events/EventDetail"; // ← ADIM 8
 
 // En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
@@ -39,7 +40,7 @@ function App() {
     window.scrollTo(0, 0);
   }
 
-  // Seçili etkinlik
+  // Seçili etkinlik (bulmak App'in işi)
   const selected = selectedId ? findEventById(events, selectedId) : undefined;
 
   // Filtreli liste her çizimde hesaplanır
@@ -92,7 +93,6 @@ function App() {
         {/* Etkinlikler sayfası */}
         {page === "events" && (
           <>
-            {/* ← ADIM 7 */}
             <EventFilter
               searchText={searchText}
               category={category}
@@ -115,7 +115,7 @@ function App() {
           </>
         )}
 
-        {/* Detay — bulunamazsa */}
+        {/* Detay — bulunamazsa (App'te kalır) */}
         {page === "detail" && !selected && (
           <>
             <div className="hata-kutusu">
@@ -134,57 +134,13 @@ function App() {
           </>
         )}
 
-        {/* Detay — bulunursa */}
+        {/* Detay — bulunursa ← ADIM 8 */}
         {page === "detail" && selected && (
-          <article className={selected.image ? "detay" : "detay afissiz"}>
-            {selected.image && (
-              <figure className="detay-afis">
-                <img src={selected.image} alt={`${selected.title} afişi`} />
-                <figcaption>{selected.title} afişi</figcaption>
-              </figure>
-            )}
-
-            <aside className="kunye">
-              <h2>Etkinlik Künyesi</h2>
-              <dl>
-                <dt>Tarih</dt>
-                <dd>{formatDate(selected.date)}, {selected.time}</dd>
-                <dt>Yer</dt>
-                <dd>{selected.location}</dd>
-                <dt>Kategori</dt>
-                <dd>{selected.category}</dd>
-                <dt>Kontenjan</dt>
-                <dd>{selected.capacity} kişi</dd>
-              </dl>
-            </aside>
-
-            <section className="aciklama">
-              <h2>Açıklama</h2>
-              <p>{selected.description}</p>
-              <div className="butonlar">
-                <a
-                  className="buton"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    go("events");
-                  }}
-                >
-                  ← Listeye dön
-                </a>
-                <a
-                  className="buton"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    go("update", selected.id);
-                  }}
-                >
-                  Bu etkinliği güncelle
-                </a>
-              </div>
-            </section>
-          </article>
+          <EventDetail
+            event={selected}
+            onBack={() => go("events")}
+            onEdit={(id) => go("update", id)}
+          />
         )}
 
         {/* Ekle ve Güncelle — aynı form, sadece görünüm */}
