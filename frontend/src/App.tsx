@@ -10,14 +10,10 @@ import {
 } from "./utils/filter-events";
 import { formatDate } from "./utils/format-date";
 import Footer from "./components/layout/Footer";
-import Header from "./components/layout/Header"; // ← ADIM 3
+import Header from "./components/layout/Header";
+import Navigation from "./components/layout/Navigation"; // ← ADIM 4
 
-// Menü öğeleri bir dizide (Güncelle menüde yok)
-const menuItems: { page: PageName; label: string }[] = [
-  { page: "home", label: "Ana Sayfa" },
-  { page: "events", label: "Etkinlikler" },
-  { page: "add", label: "Ekle" },
-];
+// (menuItems dizisi buradan silindi, Navigation.tsx'e taşındı) ← ADIM 4
 
 // En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
@@ -56,7 +52,7 @@ function App() {
   if (page === "add") title = "Etkinlik Ekle";
   if (page === "update") title = "Etkinlik Güncelle";
 
-  // Sayfaya göre alt yazı (sadece ana sayfa ve etkinliklerde) ← ADIM 3
+  // Sayfaya göre alt yazı (sadece ana sayfa ve etkinliklerde)
   let text: string | undefined;
   if (page === "home") text = "Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.";
   if (page === "events") text = "Ekim ayında kampüste düzenlenen etkinlikler.";
@@ -94,26 +90,8 @@ function App() {
 
   return (
     <>
-      <Header title={title} text={text} /> {/* ← ADIM 3 */}
-
-      <nav className="menu">
-        <ul>
-          {menuItems.map((item) => (
-            <li key={item.page}>
-              <a
-                href="#"
-                aria-current={page === item.page ? "page" : undefined}
-                onClick={(e) => {
-                  e.preventDefault();
-                  go(item.page);
-                }}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Header title={title} text={text} />
+      <Navigation current={page} onNavigate={go} /> {/* ← ADIM 4 */}
 
       <main>
         {/* Ana sayfa */}
