@@ -12,7 +12,8 @@ import { formatDate } from "./utils/format-date";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
-import EventList from "./components/events/EventList"; // ← ADIM 6 (EventCard yerine)
+import EventList from "./components/events/EventList";
+import EventFilter from "./components/events/EventFilter"; // ← ADIM 7
 
 // En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
@@ -27,7 +28,7 @@ function App() {
   const [page, setPage] = useState<PageName>("home");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // Arama metni ve seçili kategori
+  // Arama metni ve seçili kategori (state App'te kalır: lifting state)
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState<Category | "">("");
 
@@ -73,7 +74,6 @@ function App() {
           <>
             <h2>Yaklaşan 2 Etkinlik</h2>
             <section className="kartlar">
-              {/* ← ADIM 6 */}
               <EventList events={upcoming} onShowDetail={(id) => go("detail", id)} />
             </section>
             <a
@@ -92,41 +92,20 @@ function App() {
         {/* Etkinlikler sayfası */}
         {page === "events" && (
           <>
-            <form className="filtre" onSubmit={(e) => e.preventDefault()}>
-              <div className="alan">
-                <label htmlFor="arama">Etkinlik ara</label>
-                <input
-                  type="search"
-                  id="arama"
-                  placeholder="Örn. atölye, kariyer"
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                />
-              </div>
-              <div className="alan">
-                <label htmlFor="kategori-filtre">Kategori</label>
-                <select
-                  id="kategori-filtre"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value as Category | "")}
-                >
-                  <option value="">Tümü</option>
-                  {categories.map((c) => (
-                    <option key={c} value={c}>
-                      {c}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </form>
+            {/* ← ADIM 7 */}
+            <EventFilter
+              searchText={searchText}
+              category={category}
+              categories={categories}
+              onSearchChange={setSearchText}
+              onCategoryChange={setCategory}
+            />
 
-            {/* ← ADIM 6: sayı satırı sadece sonuç varken */}
             {filtered.length > 0 && (
               <p id="sonuc">{filtered.length} etkinlik listeleniyor.</p>
             )}
 
             <section className="kartlar uc-sutun">
-              {/* ← ADIM 6 */}
               <EventList
                 events={filtered}
                 onShowDetail={(id) => go("detail", id)}
