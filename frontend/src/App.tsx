@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import type { Category } from "./types/campus-event"; // ← ADIM 5 (CampusEvent silindi)
+import type { Category } from "./types/campus-event";
 import type { PageName } from "./types/page";
 import { events } from "./data/events";
 import {
@@ -12,7 +12,7 @@ import { formatDate } from "./utils/format-date";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
 import Navigation from "./components/layout/Navigation";
-import EventCard from "./components/events/EventCard"; // ← ADIM 5
+import EventList from "./components/events/EventList"; // ← ADIM 6 (EventCard yerine)
 
 // En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
@@ -62,8 +62,6 @@ function App() {
       title === "Kampüs Etkinlikleri" ? title : `Kampüs Etkinlikleri — ${title}`;
   }, [title]);
 
-  // (renderCard fonksiyonu buradan silindi, EventCard.tsx'e taşındı) ← ADIM 5
-
   return (
     <>
       <Header title={title} text={text} />
@@ -75,14 +73,8 @@ function App() {
           <>
             <h2>Yaklaşan 2 Etkinlik</h2>
             <section className="kartlar">
-              {/* ← ADIM 5 */}
-              {upcoming.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  onShowDetail={(id) => go("detail", id)}
-                />
-              ))}
+              {/* ← ADIM 6 */}
+              <EventList events={upcoming} onShowDetail={(id) => go("detail", id)} />
             </section>
             <a
               className="buton"
@@ -128,21 +120,18 @@ function App() {
               </div>
             </form>
 
-            <p id="sonuc">
-              {filtered.length === 0
-                ? "Aramanıza uygun etkinlik bulunamadı."
-                : `${filtered.length} etkinlik listeleniyor.`}
-            </p>
+            {/* ← ADIM 6: sayı satırı sadece sonuç varken */}
+            {filtered.length > 0 && (
+              <p id="sonuc">{filtered.length} etkinlik listeleniyor.</p>
+            )}
 
             <section className="kartlar uc-sutun">
-              {/* ← ADIM 5 */}
-              {filtered.map((event) => (
-                <EventCard
-                  key={event.id}
-                  event={event}
-                  onShowDetail={(id) => go("detail", id)}
-                />
-              ))}
+              {/* ← ADIM 6 */}
+              <EventList
+                events={filtered}
+                onShowDetail={(id) => go("detail", id)}
+                emptyText="Aramanıza uygun etkinlik bulunamadı."
+              />
             </section>
           </>
         )}
