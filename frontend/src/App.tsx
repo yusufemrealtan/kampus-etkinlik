@@ -1,59 +1,50 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import type { CampusEvent, Category } from "./types/campus-event";
+import type { PageName } from "./types/page"; // ← ADIM 1
 import { events } from "./data/events";
 import {
   filterByCategory,
   findEventById,
   searchEvents,
 } from "./utils/filter-events";
+import { formatDate } from "./utils/format-date"; // ← ADIM 1
 
-// ADIM 8: Sayfa adları için tip
-type PageName = "home" | "events" | "detail" | "add" | "update";
-
-// ADIM 8: Menü öğeleri bir dizide (Güncelle menüde yok)
+// Menü öğeleri bir dizide (Güncelle menüde yok)
 const menuItems: { page: PageName; label: string }[] = [
   { page: "home", label: "Ana Sayfa" },
   { page: "events", label: "Etkinlikler" },
   { page: "add", label: "Ekle" },
 ];
 
-// ADIM 9: En yakın 2 etkinlik (kopyala → sırala → ilk 2)
+// En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
   .sort((a, b) => a.date.localeCompare(b.date))
   .slice(0, 2);
 
-// ADIM 10: Kategori seçenekleri veriden, her biri bir kez
+// Kategori seçenekleri veriden, her biri bir kez
 const categories = [...new Set(events.map((e) => e.category))];
 
-// ADIM 9: Tarih → "12 Ekim 2026"
-const formatDate = (event: CampusEvent) =>
-  new Date(`${event.date}T${event.time}`).toLocaleDateString("tr-TR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
 function App() {
-  // ADIM 8: Açık sayfa ve seçili etkinlik
+  // Açık sayfa ve seçili etkinlik
   const [page, setPage] = useState<PageName>("home");
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
-  // ADIM 10: Arama metni ve seçili kategori
+  // Arama metni ve seçili kategori
   const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState<Category | "">("");
 
-  // ADIM 8: Sayfa değiştiren tek fonksiyon
+  // Sayfa değiştiren tek fonksiyon
   function go(next: PageName, id: string | null = null) {
     setPage(next);
     setSelectedId(id);
     window.scrollTo(0, 0);
   }
 
-  // ADIM 12: Seçili etkinlik
+  // Seçili etkinlik
   const selected = selectedId ? findEventById(events, selectedId) : undefined;
 
-  // ADIM 10: Filtreli liste state değil, her çizimde hesaplanır
+  // Filtreli liste her çizimde hesaplanır
   const filtered = filterByCategory(searchEvents(events, searchText), category);
 
   // Sayfaya göre ana başlık
@@ -63,13 +54,13 @@ function App() {
   if (page === "add") title = "Etkinlik Ekle";
   if (page === "update") title = "Etkinlik Güncelle";
 
-  // ADIM 11: Başlık değişince sekme adı da değişsin
+  // Başlık değişince sekme adı da değişsin
   useEffect(() => {
     document.title =
       title === "Kampüs Etkinlikleri" ? title : `Kampüs Etkinlikleri — ${title}`;
   }, [title]);
 
-  // ADIM 9: Bir etkinlikten kart (ana sayfa ve liste ortak kullanır)
+  // Bir etkinlikten kart
   function renderCard(event: CampusEvent) {
     return (
       <article className="kart" key={event.id}>
@@ -77,7 +68,7 @@ function App() {
         <p>
           <span className="etiket">{event.category}</span>
         </p>
-        <p>Tarih: {formatDate(event)}, {event.time}</p>
+        <p>Tarih: {formatDate(event.date)}, {event.time}</p> {/* ← ADIM 1 */}
         <p>Yer: {event.location}</p>
         <p>Kontenjan: {event.capacity} kişi</p>
         <p>{event.description}</p>
@@ -96,7 +87,6 @@ function App() {
 
   return (
     <>
-      {/* ADIM 7: Başlık ve menü */}
       <header className="site-baslik">
         <h1>{title}</h1>
         {page === "home" && (
@@ -128,7 +118,7 @@ function App() {
       </header>
 
       <main>
-        {/* ADIM 9: Ana sayfa */}
+        {/* Ana sayfa */}
         {page === "home" && (
           <>
             <h2>Yaklaşan 2 Etkinlik</h2>
@@ -146,7 +136,7 @@ function App() {
           </>
         )}
 
-        {/* ADIM 10: Etkinlikler sayfası */}
+        {/* Etkinlikler sayfası */}
         {page === "events" && (
           <>
             <form className="filtre" onSubmit={(e) => e.preventDefault()}>
@@ -187,7 +177,7 @@ function App() {
           </>
         )}
 
-        {/* ADIM 12: Detay — bulunamazsa */}
+        {/* Detay — bulunamazsa */}
         {page === "detail" && !selected && (
           <>
             <div className="hata-kutusu">
@@ -206,7 +196,7 @@ function App() {
           </>
         )}
 
-        {/* ADIM 12: Detay — bulunursa */}
+        {/* Detay — bulunursa */}
         {page === "detail" && selected && (
           <article className={selected.image ? "detay" : "detay afissiz"}>
             {selected.image && (
@@ -220,7 +210,7 @@ function App() {
               <h2>Etkinlik Künyesi</h2>
               <dl>
                 <dt>Tarih</dt>
-                <dd>{formatDate(selected)}, {selected.time}</dd>
+                <dd>{formatDate(selected.date)}, {selected.time}</dd> {/* ← ADIM 1 */}
                 <dt>Yer</dt>
                 <dd>{selected.location}</dd>
                 <dt>Kategori</dt>
@@ -259,7 +249,7 @@ function App() {
           </article>
         )}
 
-        {/* ADIM 13: Ekle ve Güncelle — aynı form, sadece görünüm */}
+        {/* Ekle ve Güncelle — aynı form, sadece görünüm */}
         {(page === "add" || page === "update") && (
           <>
             <p className="form-aciklama">
