@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import type { CampusEvent, Category } from "./types/campus-event";
+import type { Category } from "./types/campus-event"; // ← ADIM 5 (CampusEvent silindi)
 import type { PageName } from "./types/page";
 import { events } from "./data/events";
 import {
@@ -11,9 +11,8 @@ import {
 import { formatDate } from "./utils/format-date";
 import Footer from "./components/layout/Footer";
 import Header from "./components/layout/Header";
-import Navigation from "./components/layout/Navigation"; // ← ADIM 4
-
-// (menuItems dizisi buradan silindi, Navigation.tsx'e taşındı) ← ADIM 4
+import Navigation from "./components/layout/Navigation";
+import EventCard from "./components/events/EventCard"; // ← ADIM 5
 
 // En yakın 2 etkinlik (kopyala → sırala → ilk 2)
 const upcoming = [...events]
@@ -63,42 +62,28 @@ function App() {
       title === "Kampüs Etkinlikleri" ? title : `Kampüs Etkinlikleri — ${title}`;
   }, [title]);
 
-  // Bir etkinlikten kart
-  function renderCard(event: CampusEvent) {
-    return (
-      <article className="kart" key={event.id}>
-        <h2>{event.title}</h2>
-        <p>
-          <span className="etiket">{event.category}</span>
-        </p>
-        <p>Tarih: {formatDate(event.date)}, {event.time}</p>
-        <p>Yer: {event.location}</p>
-        <p>Kontenjan: {event.capacity} kişi</p>
-        <p>{event.description}</p>
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            go("detail", event.id);
-          }}
-        >
-          Detayları gör
-        </a>
-      </article>
-    );
-  }
+  // (renderCard fonksiyonu buradan silindi, EventCard.tsx'e taşındı) ← ADIM 5
 
   return (
     <>
       <Header title={title} text={text} />
-      <Navigation current={page} onNavigate={go} /> {/* ← ADIM 4 */}
+      <Navigation current={page} onNavigate={go} />
 
       <main>
         {/* Ana sayfa */}
         {page === "home" && (
           <>
             <h2>Yaklaşan 2 Etkinlik</h2>
-            <section className="kartlar">{upcoming.map(renderCard)}</section>
+            <section className="kartlar">
+              {/* ← ADIM 5 */}
+              {upcoming.map((event) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  onShowDetail={(id) => go("detail", id)}
+                />
+              ))}
+            </section>
             <a
               className="buton"
               href="#"
@@ -149,7 +134,16 @@ function App() {
                 : `${filtered.length} etkinlik listeleniyor.`}
             </p>
 
-            <section className="kartlar uc-sutun">{filtered.map(renderCard)}</section>
+            <section className="kartlar uc-sutun">
+              {/* ← ADIM 5 */}
+              {filtered.map((event) => (
+                <EventCard
+                  key={event.id}
+                  event={event}
+                  onShowDetail={(id) => go("detail", id)}
+                />
+              ))}
+            </section>
           </>
         )}
 
