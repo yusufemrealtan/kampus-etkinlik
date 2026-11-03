@@ -398,3 +398,8 @@ footer {
     font-weight: 700;
   }
 }
+
+/* Menü header'ın dışında: ul'nin üst margin'i dışarı taşıp
+   başlıkla menü arasında açık renkli şerit bırakıyordu */
+.menu { padding-top: var(--bosluk-s); }
+.menu ul { margin-top: 0; }
