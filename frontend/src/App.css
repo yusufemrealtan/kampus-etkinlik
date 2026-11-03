@@ -320,3 +320,81 @@ footer {
 
 /* EventList'in boş liste mesajı (Adım 6'da kullanılacak) */
 .sonuc { font-weight: bold; color: var(--renk-ana); }
+
+/* ========== 12) SPRINT 6 EKLERİ ========== */
+/* Sayfa başlıkları */
+.bolum-baslik { margin: var(--bosluk-m) 0; }
+
+/* Başlık + buton aynı satırda (Yönetim) */
+.ust-satir {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bosluk-s);
+  margin-bottom: var(--bosluk-m);
+}
+.ust-satir .bolum-baslik { margin: 0; }
+
+/* Form alanı altındaki hata mesajı */
+.hata-metni { color: var(--renk-hata); font-size: 0.9rem; }
+.hata-metni:empty { display: none; }
+
+/* Başarı mesajı */
+.mesaj-basari {
+  color: var(--renk-basari);
+  background: var(--renk-basari-zemin);
+  border-color: var(--renk-basari);
+}
+
+/* Formun altındaki bağlantılar */
+.form-linkler {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--bosluk-m);
+  margin-top: var(--bosluk-m);
+}
+.form-linkler a { color: var(--renk-ana); font-weight: bold; }
+
+/* Yönetim tablosu */
+.tablo {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--renk-kart);
+}
+.tablo th,
+.tablo td {
+  padding: var(--bosluk-s) var(--bosluk-m);
+  text-align: left;
+  border-bottom: 1px solid var(--renk-cizgi);
+}
+.tablo th { background: var(--renk-ana); color: var(--renk-kart); }
+.tablo td a:not(.buton) { color: var(--renk-ana); font-weight: bold; }
+.islemler { display: flex; flex-wrap: wrap; gap: var(--bosluk-s); }
+.islemler button {
+  width: auto;
+  min-height: 44px;
+  margin-top: 0;
+  padding: var(--bosluk-s) var(--bosluk-m);
+}
+.buton-sil { background: var(--renk-hata); }
+.buton-sil:hover { background: var(--renk-hata); filter: brightness(0.85); }
+
+/* Telefonda her satır bir kart */
+@media (max-width: 699px) {
+  .tablo { background: none; }
+  .tablo thead { display: none; }
+  .tablo tr {
+    display: block;
+    margin-bottom: var(--bosluk-m);
+    background: var(--renk-kart);
+    border: 1px solid var(--renk-cizgi);
+    border-radius: var(--kose);
+  }
+  .tablo td { display: block; border-bottom: none; }
+  .tablo td.islemler { display: flex; }
+  .tablo td[data-baslik]::before {
+    content: attr(data-baslik) ": ";
+    font-weight: 700;
+  }
+}

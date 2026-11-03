@@ -1,13 +1,10 @@
-interface HeaderProps {
-  title: string;   // zorunlu
-  text?: string;   // isteğe bağlı
-}
-
-function Header({ title, text }: HeaderProps) {
+function Header() {
   return (
     <header className="site-baslik">
-      <h1>{title}</h1>
-      {text && <p className="alt-baslik">{text}</p>}
+      <h1>Kampüs Etkinlikleri</h1>
+      <p className="alt-baslik">
+        Fakültedeki seminer, atölye ve söyleşileri tek yerden takip edin.
+      </p>
     </header>
   );
 }

@@ -1,13 +1,13 @@
+import { Link } from "react-router-dom";
 import type { CampusEvent } from "../../types/campus-event";
 import { formatDate } from "../../utils/format-date";
 
 interface EventDetailProps {
   event: CampusEvent;
-  onBack: () => void;
-  onEdit: (id: string) => void;
 }
 
-function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
+// Sadece çizer: useParams ve useEvents yok, veriyi sayfa verir
+function EventDetail({ event }: EventDetailProps) {
   return (
     <article className={event.image ? "detay" : "detay afissiz"}>
       {event.image && (
@@ -35,26 +35,12 @@ function EventDetail({ event, onBack, onEdit }: EventDetailProps) {
         <h2>Açıklama</h2>
         <p>{event.description}</p>
         <div className="butonlar">
-          <a
-            className="buton"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onBack();
-            }}
-          >
+          <Link className="buton" to="/events">
             ← Listeye dön
-          </a>
-          <a
-            className="buton"
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onEdit(event.id);
-            }}
-          >
+          </Link>
+          <Link className="buton" to={`/admin/${event.id}/edit`}>
             Bu etkinliği güncelle
-          </a>
+          </Link>
         </div>
       </section>
     </article>
