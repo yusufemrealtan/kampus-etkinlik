@@ -1,0 +1,128 @@
+{
+  "info": {
+    "_postman_id": "5b0e2c1a-7f43-4d2e-9a61-2416501065a7",
+    "name": "Kampüs API",
+    "description": "Sprint 7 — Express REST API istekleri. Yusuf Emre Altan (2416501065)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 Health",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/health",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["health"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2 Etkinlik listesi",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3 Tek etkinlik",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/events/event-2",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events", "event-2"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4 Olmayan etkinlik (404)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/events/yok",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events", "yok"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5 Etkinlik oluştur (201)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Arduino ile Akıllı Park Sensörü\",\n  \"category\": \"Atölye\",\n  \"capacity\": 25,\n  \"date\": \"2026-12-08\",\n  \"time\": \"13:30\",\n  \"location\": \"Elektronik Laboratuvarı\",\n  \"description\": \"Ultrasonik sensörle boş park yerlerini gösteren küçük bir devre kuruyoruz.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6 Eksik veri (400)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Sadece başlık\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:3000/events",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["events"]
+        }
+      },
+      "response": []
+    }
+  ]
+}

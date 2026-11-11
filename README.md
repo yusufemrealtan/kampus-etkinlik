@@ -25,6 +25,19 @@ npm run dev
 | `/admin/:id/edit` | EditEventPage — etkinlik güncelle |
 | `*` | NotFoundPage — sayfa bulunamadı |
 
+## Sprint 7 — Express REST API
+
+Repo kökünde iki uygulama var: `frontend/` (React + Vite, localhost:5173) ve `backend/` (Node + Express, localhost:3000).
+
+```bash
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+Endpoint'ler: `GET /health`, `GET /events`, `GET /events/:id`, `POST /events`. REST sözleşmesi ve Postman istekleri için: [backend/README.md](backend/README.md).
+
 ## Sprint 6 + Vize — Router, Context ve Yönetim
 
 - React Router: `main.tsx`'te `BrowserRouter`, `App.tsx`'te 10 `Route`. Menü `NavLink`, sayfa içi bağlantılar `Link`.
