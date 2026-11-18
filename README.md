@@ -25,6 +25,20 @@ npm run dev
 | `/admin/:id/edit` | EditEventPage — etkinlik güncelle |
 | `*` | NotFoundPage — sayfa bulunamadı |
 
+## Sprint 8 — MongoDB ve Mongoose
+
+Etkinlikler artık MongoDB Atlas'ta tutuluyor; adresler ve status kodları Sprint 7 ile aynı, id artık MongoDB `_id`.
+
+```bash
+cd backend
+npm install
+cp .env.example .env   # MONGODB_URI'yi kendi adresinle değiştir
+npm run seed
+npm run dev
+```
+
+Bağlantı `src/config/database.js`'te, schema `src/models/event-model.js`'te, seed `src/seed.js`'te. Ayrıntılar: [backend/README.md](backend/README.md).
+
 ## Sprint 7 — Express REST API
 
 Repo kökünde iki uygulama var: `frontend/` (React + Vite, localhost:5173) ve `backend/` (Node + Express, localhost:3000).

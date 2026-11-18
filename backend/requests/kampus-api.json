@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "5b0e2c1a-7f43-4d2e-9a61-2416501065a7",
     "name": "Kampüs API",
-    "description": "Sprint 7 — Express REST API istekleri. Yusuf Emre Altan (2416501065)",
+    "description": "Sprint 8 — MongoDB ve Mongoose. Yusuf Emre Altan (2416501065). İstekleri sırayla çalıştırın: 2. istek ilk etkinliğin _id'sini eventId değişkenine kaydeder, 3. istek onu kullanır.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -23,6 +23,22 @@
     },
     {
       "name": "2 Etkinlik listesi",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"200 ve liste\", function () {",
+              "  pm.response.to.have.status(200);",
+              "  const list = pm.response.json();",
+              "  pm.expect(list).to.be.an(\"array\").that.is.not.empty;",
+              "  pm.collectionVariables.set(\"eventId\", list[0]._id);",
+              "});"
+            ]
+          }
+        }
+      ],
       "request": {
         "method": "GET",
         "header": [],
@@ -42,12 +58,13 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "http://localhost:3000/events/event-2",
+          "raw": "http://localhost:3000/events/{{eventId}}",
           "protocol": "http",
           "host": ["localhost"],
           "port": "3000",
-          "path": ["events", "event-2"]
-        }
+          "path": ["events", "{{eventId}}"]
+        },
+        "description": "eventId, 2. istekte listedeki ilk etkinliğin _id'si olarak kaydedilir."
       },
       "response": []
     },
@@ -123,6 +140,12 @@
         }
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "eventId",
+      "value": ""
     }
   ]
 }
