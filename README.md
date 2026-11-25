@@ -25,6 +25,22 @@ npm run dev
 | `/admin/:id/edit` | EditEventPage — etkinlik güncelle |
 | `*` | NotFoundPage — sayfa bulunamadı |
 
+## Sprint 9 — Tam CRUD ve sorgular
+
+Backend'e güncelleme, silme, arama ve yaklaşan etkinlikler eklendi; frontend değişmedi.
+
+| Method | Endpoint | Başarılı | Hata |
+|---|---|---|---|
+| GET | `/events?search=&category=` | 200 | — |
+| GET | `/events/upcoming` | 200 · tarihe göre sıralı | — |
+| PATCH | `/events/:id` | 200 · güncel kayıt | 400, 404 |
+| DELETE | `/events/:id` | 204 · gövde yok | 404 |
+
+- Tarih API'de `"GG-AA-YYYY"` (`"15-10-2026"`), veritabanında gerçek `Date` (`src/utils/date.js`).
+- Test: backend açıkken `newman run https://webdersi.vercel.app/test.json` → 18 istek, 45 test, 0 hata. Sonuç `backend/requests/run-results.json`'da.
+
+Ayrıntılar: [backend/README.md](backend/README.md).
+
 ## Sprint 8 — MongoDB ve Mongoose
 
 Etkinlikler artık MongoDB Atlas'ta tutuluyor; adresler ve status kodları Sprint 7 ile aynı, id artık MongoDB `_id`.
