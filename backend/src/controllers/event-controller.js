@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { Event } from "../models/event-model.js";
+import { todayStart } from "../utils/date.js";
 
 // PATCH ile değiştirilemeyen alanlar
 const KORUNAN_ALANLAR = ["_id", "createdAt", "updatedAt", "__v"];
@@ -21,6 +22,20 @@ export async function getEvents(req, res, next) {
       filter.title = { $regex: guvenli, $options: "i" }; // i: büyük/küçük harf fark etmez
     }
     const events = await Event.find(filter).sort({ date: 1 });
+    res.json(events);
+  } catch (err) {
+    next(err);
+  }
+}
+
+// GET /events/upcoming  (bugün ve sonrası, en yakın önce)
+export async function getUpcomingEvents(req, res, next) {
+  try {
+    // date veritabanında Date: $gte ve sort tarihi tarih olarak karşılaştırır
+    const events = await Event.find({ date: { $gte: todayStart() } }).sort({
+      date: 1,
+      time: 1,
+    });
     res.json(events);
   } catch (err) {
     next(err);
