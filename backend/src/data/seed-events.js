@@ -1,21 +1,22 @@
 // npm run seed ile veritabanına eklenen örnek veri.
 // id alanı yok: MongoDB her kayda kendi _id'sini verir.
+// Tarihler "GG-AA-YYYY". İlk 2 etkinlik geçmişte: /events/upcoming onları göstermez.
 export const seedEvents = [
   {
     title: "Mezuniyet Sonrası Yol Haritası",
     category: "Seminer",
     capacity: 100,
-    date: "2026-10-12",
+    date: "12-10-2026",
     time: "14:00",
     location: "Mühendislik Fakültesi Konferans Salonu",
     description:
       "Farklı sektörlerde çalışan mezunlar ilk iş deneyimlerini ve staj tavsiyelerini paylaşıyor.",
   },
   {
-    title: "Raspberry Pi ile Akıllı Sera",
+    title: "Raspberry Pi ile Akıllı Sera Atölyesi",
     category: "Atölye",
     capacity: 20,
-    date: "2026-10-20",
+    date: "20-10-2026",
     time: "10:00",
     location: "Elektronik Laboratuvarı",
     description:
@@ -25,17 +26,17 @@ export const seedEvents = [
     title: "Açık Kaynağa İlk Katkı",
     category: "Söyleşi",
     capacity: 50,
-    date: "2026-10-27",
+    date: "03-12-2026",
     time: "13:00",
     location: "Merkezi Derslik D-104",
     description:
       "Açık kaynak projelerde gönüllü geliştirici olmak üzerine sohbet ve soru-cevap.",
   },
   {
-    title: "Figma ile Mobil Arayüz Tasarımı",
+    title: "Figma ile Mobil Arayüz Tasarımı Atölyesi",
     category: "Atölye",
     capacity: 30,
-    date: "2026-11-03",
+    date: "09-12-2026",
     time: "15:00",
     location: "Bilgisayar Mühendisliği Lab 3",
     description:
@@ -45,7 +46,7 @@ export const seedEvents = [
     title: "Veriyle Karar Vermek",
     category: "Seminer",
     capacity: 150,
-    date: "2026-11-10",
+    date: "16-12-2026",
     time: "11:00",
     location: "Kongre ve Kültür Merkezi Küçük Salon",
     description:
@@ -55,7 +56,7 @@ export const seedEvents = [
     title: "Isparta'dan Dünyaya: Girişimcilik Hikâyeleri",
     category: "Söyleşi",
     capacity: 60,
-    date: "2026-12-01",
+    date: "01-12-2026",
     time: "14:30",
     location: "Teknokent Toplantı Salonu",
     description:
